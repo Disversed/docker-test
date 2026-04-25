@@ -1,0 +1,15 @@
+services:
+  db:
+    build: dockerfile-postgres
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_PASSWORD=docker"
+    volumes:
+      - ./out/pgdata:/var/lib/postgresql
+  app:
+    build: .
+    container_name: go-app
+    ports:
+      - "5555:5555"
